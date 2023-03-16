@@ -1,23 +1,12 @@
-import pyrebase
 import cv2 as cv
 import numpy as np
 import mediapipe as mp
 import pickle
 
-config = {
-    "apiKey": "AIzaSyBkP-_8YuxEd8uoBLGW3ByD9L4KdCyFnQo",
-  "authDomain": "ml-model-4d1ab.firebaseapp.com",
-  "projectId": "ml-model-4d1ab",
-  "storageBucket": "ml-model-4d1ab.appspot.com",
-  "messagingSenderId": "619286862289",
-  "appId": "1:619286862289:web:762fe3df16cf2f6f2be8f0",
-  "measurementId": "G-8532VYKT4S",
-  "databaseURL":"https://ml-model-4d1ab-default-rtdb.firebaseio.com/"
-}
 
-firebase = pyrebase.initialize_app(config)
+# firebase = pyrebase.initialize_app(config)
 
-storage = firebase.storage()
+# storage = firebase.storage()
 
 from flask import *
 
@@ -46,17 +35,18 @@ def basic():
   sequence = []
   sentence = []
   thres = 0.9
-  upload = request.files['upload']
-  storage.child("{}".format(upload.filename)).put(upload)
-  links = storage.child("{}".format(upload.filename)).get_url(None)
+  
   # obj = {
   #   "res":"Success",
   #   "url":links
   # }
 
   # return jsonify(obj)
+
+  json = request.get_json()
+  print(json)
   mp_holistic = mp.solutions.holistic
-  cap = cv.VideoCapture(links)  
+  cap = cv.VideoCapture(json['url'])  
   with mp_holistic.Holistic(min_detection_confidence=0.7, min_tracking_confidence=0.5) as holistic:
     while True:
         
@@ -94,20 +84,6 @@ def basic():
     return jsonify(obj)
 
 
-
-
-
-
-
-@app.route('/abc',methods=['POST'])
-def abc():
-    print('Hello')
-    json = request.get_json()
-    print(json)
-    data = {
-        "res":"Success"
-    }
-    return jsonify(data)
 
 
 if __name__ == '__main__':
