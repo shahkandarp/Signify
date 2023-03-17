@@ -83,7 +83,15 @@ def basic():
     }
     return jsonify(obj)
 
-
+@app.route('/abc',methods=['POST'])
+def abc():
+    print('Hello')
+    json = request.get_json()
+    print(json)
+    data = {
+        "res":"Success"
+    }
+    return jsonify(data)
 
 
 if __name__ == '__main__':

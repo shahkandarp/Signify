@@ -53,7 +53,7 @@ const upload = multer({ memoStorage });
 //   request.end();
 // };
 
-app.post("/addPicture", upload.single("pic"), async (req, res) => {
+app.post("/predict", upload.single("pic"), async (req, res) => {
   const file = req.file;
   const imageRef = ref(storage, file.originalname);
   const metatype = { contentType: file.mimetype, name: file.originalname };
