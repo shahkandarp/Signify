@@ -9,12 +9,8 @@ import pickle
 # storage = firebase.storage()
 
 from flask import *
-<<<<<<< HEAD
-import os
-=======
 from tensorflow import keras
 
->>>>>>> 7ad85a916f04249f7a9042e04f8c7fdceafb775b
 
 
 app = Flask(__name__)
