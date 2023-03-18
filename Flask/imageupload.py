@@ -9,11 +9,11 @@ import pickle
 # storage = firebase.storage()
 
 from flask import *
-
+import os
 
 
 app = Flask(__name__)
-signify = pickle.load(open('signify.pkl', 'rb'))
+signify = pickle.load(open(os.path.abspath('signify.pkl'), 'rb'))
 
 
 
