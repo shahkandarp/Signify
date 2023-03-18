@@ -15,7 +15,8 @@ import os
 
 
 app = Flask(__name__)
-signify = pickle.load(open(os.path.abspath('signify.pkl'), 'rb'))
+print(os.path.abspath('signify1.pkl'))
+signify = pickle.load(open(os.path.abspath('signify1.pkl'), 'rb'))
 
 
 
